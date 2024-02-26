@@ -8,7 +8,7 @@ const {
     addRole,
     addEmployee,
     updateEmployeeRole
-} = require('./src/db/queries');
+} = require('./db/queries');
 
 async function startApp() {
     while (true) {
