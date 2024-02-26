@@ -12,12 +12,17 @@ const {
 
 async function startApp() {
     while (true) {
+
+        console.log('Before inquirer.prompt');
+
         const { action } = await inquirer.prompt({
             name: 'action',
             type: 'list',
             message: 'What would you like to do?',
             choices: ['View Departments', 'View Roles', 'View Employees', 'Add Department', 'Add Role', 'Add Employee', 'Update Employee Role', 'Exit'],
         });
+
+        console.log('After inquirer.prompt');
 
         switch (action) {
             case 'View Departments':
