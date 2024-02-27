@@ -4,7 +4,7 @@ const connection = require('./connection');
 
 async function viewDepartments() {
     try {
-        const [rows, fields] = await connection.query('SELECT * FROM department');
+        const [rows, fields] = await connection.query('SELECT * FROM departments');
         console.table(rows);
     } catch (error) {
         console.error('Error viewing departments:', error.message);
@@ -13,7 +13,7 @@ async function viewDepartments() {
 
 async function viewRoles() {
     try {
-        const [rows, fields] = await connection.query('SELECT * FROM role');
+        const [rows, fields] = await connection.query('SELECT * FROM roles');
         console.table(rows.map(role => ({
             ID: role.id,
             Title: role.title,
@@ -27,19 +27,57 @@ async function viewRoles() {
 
 async function viewEmployees() {
     try {
-        const [rows, fields] = await connection.query('SELECT * FROM employee');
+        const [rows, fields] = await connection.query(`
+            SELECT 
+                employees.id,
+                employees.first_name,
+                employees.last_name,
+                roles.title AS role_title,
+                roles.salary,
+                employees.manager_id
+            FROM employees
+            INNER JOIN roles ON employees.role_id = roles.id
+        `);
+
         console.table(rows.map(employee => ({
             ID: employee.id,
             First_Name: employee.first_name,
             Last_Name: employee.last_name,
-            Title: employee.title, // Assuming there's a way to get the employee's role title
-            Salary: employee.salary, // Assuming there's a way to get the employee's salary
+            Title: employee.role_title,
+            Salary: employee.salary,
             Manager_ID: employee.manager_id,
         })));
     } catch (error) {
         console.error('Error viewing employees:', error.message);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+// async function viewEmployees() {
+//     try {
+//         const [rows, fields] = await connection.query('SELECT * FROM employees');
+//         console.table(rows.map(employee => ({
+//             ID: employee.id,
+//             First_Name: employee.first_name,
+//             Last_Name: employee.last_name,
+//             Title: employee.title, // Assuming there's a way to get the employee's role title
+//             Salary: employee.salary, // Assuming there's a way to get the employee's salary
+//             Manager_ID: employee.manager_id,
+//         })));
+//     } catch (error) {
+//         console.error('Error viewing employees:', error.message);
+//     }
+// }
 
 async function addDepartment() {
     try {

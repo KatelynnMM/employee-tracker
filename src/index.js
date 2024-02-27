@@ -11,9 +11,9 @@ const {
 } = require('./db/queries');
 
 async function startApp() {
-    while (true) {
+    console.log('Start of startApp function');
 
-        console.log('Before inquirer.prompt');
+    while (true) {
 
         const { action } = await inquirer.prompt({
             name: 'action',
@@ -24,9 +24,16 @@ async function startApp() {
 
         console.log('After inquirer.prompt');
 
+
         switch (action) {
             case 'View Departments':
+
+                console.log('Before viewDepartments');
+
                 await viewDepartments();
+
+                console.log('After viewDepartments');
+
                 break;
 
             case 'View Roles':

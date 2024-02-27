@@ -1,5 +1,5 @@
 // employee.js
-class Employee {
+class Employees {
     constructor(first_name, last_name, role_id, manager_id) {
         this.first_name = first_name;
         this.last_name = last_name;
@@ -8,4 +8,4 @@ class Employee {
     }
 }
 
-module.exports = Employee;
+module.exports = Employees;
