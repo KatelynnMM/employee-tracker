@@ -52,7 +52,7 @@ async function viewEmployees() {
     }
 }
 
-async function addDepartments() {
+async function addDepartment() {
     try {
         const department = await inquirer.prompt([
             {
@@ -62,14 +62,14 @@ async function addDepartments() {
             },
         ]);
 
-        const [result] = await connection.query('INSERT INTO department SET ?', department);
+        const [result] = await connection.query('INSERT INTO departments SET ?', department);
         console.log(`Department added with ID ${result.insertId}`);
     } catch (error) {
         console.error('Error adding department:', error.message);
     }
 }
 
-async function addRoles() {
+async function addRole() {
     try {
         const role = await inquirer.prompt([
             // Inquirer prompts for role information
@@ -91,7 +91,7 @@ async function addRoles() {
             },
         ]);
 
-        const [result] = await connection.query('INSERT INTO role SET ?', role);
+        const [result] = await connection.query('INSERT INTO roles SET ?', role);
         console.log(`Role added with ID ${result.insertId}`);
     } catch (error) {
         console.error('Error adding role:', error.message);
@@ -125,7 +125,7 @@ async function addEmployee() {
             },
         ]);
 
-        const [result] = await connection.query('INSERT INTO employee SET ?', employee);
+        const [result] = await connection.query('INSERT INTO employees SET ?', employee);
         console.log(`Employee added with ID ${result.insertId}`);
     } catch (error) {
         console.error('Error adding employee:', error.message);
