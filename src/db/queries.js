@@ -52,34 +52,7 @@ async function viewEmployees() {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-// async function viewEmployees() {
-//     try {
-//         const [rows, fields] = await connection.query('SELECT * FROM employees');
-//         console.table(rows.map(employee => ({
-//             ID: employee.id,
-//             First_Name: employee.first_name,
-//             Last_Name: employee.last_name,
-//             Title: employee.title, // Assuming there's a way to get the employee's role title
-//             Salary: employee.salary, // Assuming there's a way to get the employee's salary
-//             Manager_ID: employee.manager_id,
-//         })));
-//     } catch (error) {
-//         console.error('Error viewing employees:', error.message);
-//     }
-// }
-
-async function addDepartment() {
+async function addDepartments() {
     try {
         const department = await inquirer.prompt([
             {
@@ -96,7 +69,7 @@ async function addDepartment() {
     }
 }
 
-async function addRole() {
+async function addRoles() {
     try {
         const role = await inquirer.prompt([
             // Inquirer prompts for role information
